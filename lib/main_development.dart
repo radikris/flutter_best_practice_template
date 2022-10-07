@@ -6,8 +6,16 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:best_practice_template/app/app.dart';
+import 'package:best_practice_template/app/injectable.dart';
+import 'package:best_practice_template/app/network/api.dart';
 import 'package:best_practice_template/bootstrap.dart';
+import 'package:get_it/get_it.dart';
+import 'package:injectable/injectable.dart';
 
-void main() {
-  bootstrap(() => const App());
+void main() async {
+  await configureDependencies(Environment.prod);
+  final client = ApiClient(getIt());
+
+  await client.getCountries().then((it) => print(it));
+  await bootstrap(() => const App());
 }

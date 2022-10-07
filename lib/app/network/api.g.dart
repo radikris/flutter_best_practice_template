@@ -21,13 +21,13 @@ class _ApiClient implements ApiClient {
   String? baseUrl;
 
   @override
-  Future<ApiResult<List<Country>>> getCountries() async {
+  Future<List<Country>> getCountries() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiResult<List<Country>>>(Options(
+    final _result =
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<Country>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -39,23 +39,20 @@ class _ApiClient implements ApiClient {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ApiResult<List<Country>>.fromJson(
-      _result.data!,
-      (json) => (json as List<dynamic>)
-          .map<Country>((i) => Country.fromJson(i as Map<String, dynamic>))
-          .toList(),
-    );
+    var value = _result.data!
+        .map((dynamic i) => Country.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 
   @override
-  Future<ApiResult<List<CountryState>>> getCountryStates(id) async {
+  Future<List<CountryState>> getCountryStates(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiResult<List<CountryState>>>(Options(
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<CountryState>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -67,13 +64,9 @@ class _ApiClient implements ApiClient {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ApiResult<List<CountryState>>.fromJson(
-      _result.data!,
-      (json) => (json as List<dynamic>)
-          .map<CountryState>(
-              (i) => CountryState.fromJson(i as Map<String, dynamic>))
-          .toList(),
-    );
+    var value = _result.data!
+        .map((dynamic i) => CountryState.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 
