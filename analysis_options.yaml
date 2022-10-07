@@ -3,3 +3,4 @@ linter:
   rules:
     public_member_api_docs: false
     sort_pub_dependencies: false
+    directives_ordering: false
