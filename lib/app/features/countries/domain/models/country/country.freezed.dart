@@ -20,7 +20,7 @@ Country _$CountryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Country {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -32,7 +32,7 @@ mixin _$Country {
 abstract class $CountryCopyWith<$Res> {
   factory $CountryCopyWith(Country value, $Res Function(Country) then) =
       _$CountryCopyWithImpl<$Res>;
-  $Res call({String id, String value});
+  $Res call({int id, String value});
 }
 
 /// @nodoc
@@ -52,7 +52,7 @@ class _$CountryCopyWithImpl<$Res> implements $CountryCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       value: value == freezed
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -67,7 +67,7 @@ abstract class _$$_CountryCopyWith<$Res> implements $CountryCopyWith<$Res> {
           _$_Country value, $Res Function(_$_Country) then) =
       __$$_CountryCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String value});
+  $Res call({int id, String value});
 }
 
 /// @nodoc
@@ -88,7 +88,7 @@ class __$$_CountryCopyWithImpl<$Res> extends _$CountryCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       value: value == freezed
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -106,7 +106,7 @@ class _$_Country implements _Country {
       _$$_CountryFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String value;
 
@@ -145,13 +145,13 @@ class _$_Country implements _Country {
 }
 
 abstract class _Country implements Country {
-  const factory _Country(
-      {required final String id, required final String value}) = _$_Country;
+  const factory _Country({required final int id, required final String value}) =
+      _$_Country;
 
   factory _Country.fromJson(Map<String, dynamic> json) = _$_Country.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get value;
   @override

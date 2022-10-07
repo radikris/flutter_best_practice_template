@@ -103,7 +103,6 @@ abstract class ApiError with _$ApiError {
         }
         return apiError;
       } on FormatException catch (_) {
-        // Helper.printError(e.toString());
         return const ApiError.formatException();
       } catch (_) {
         return const ApiError.unexpectedError();

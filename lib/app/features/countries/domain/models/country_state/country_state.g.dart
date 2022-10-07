@@ -8,7 +8,7 @@ part of 'country_state.dart';
 
 _$_CountryState _$$_CountryStateFromJson(Map<String, dynamic> json) =>
     _$_CountryState(
-      id: json['id'] as String,
+      id: json['id'] as int,
       value: json['value'] as String,
     );
 

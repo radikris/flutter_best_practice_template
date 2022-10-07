@@ -6,8 +6,12 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:best_practice_template/app/app.dart';
+import 'package:best_practice_template/app/injectable.dart';
 import 'package:best_practice_template/bootstrap.dart';
+import 'package:injectable/injectable.dart';
 
-void main() {
-  bootstrap(() => const App());
+void main() async {
+  await configureDependencies(Environment.prod);
+
+  await bootstrap(() => const App());
 }
