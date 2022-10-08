@@ -9,13 +9,14 @@ import 'package:dio/dio.dart' as _i5;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
+import 'features/countries/cubit/countries_cubit.dart' as _i7;
 import 'features/countries/domain/repository/country_repository.dart' as _i3;
 import 'features/countries/domain/repository/country_repository_impl.dart'
-    as _i7;
+    as _i8;
 import 'features/countries/domain/repository/country_repository_mock.dart'
     as _i4;
 import 'network/api.dart' as _i6;
-import 'network/dio_client.dart' as _i8;
+import 'network/dio_client.dart' as _i9;
 
 const String _dev = 'dev';
 const String _prod = 'prod';
@@ -33,23 +34,22 @@ _i1.GetIt $initGetIt(
     environmentFilter,
   );
   final dioInjectableModule = _$DioInjectableModule();
-  final retrofitInjectableModule = _$RetrofitInjectableModule();
+  final registerModule = _$RegisterModule();
   gh.lazySingleton<_i3.CountryRepository>(
     () => _i4.CountryRepositoryMock(),
     registerFor: {_dev},
   );
   gh.factory<_i5.Dio>(() => dioInjectableModule.dio);
-  gh.factory<_i6.ApiClient>(() => retrofitInjectableModule.getService(
-        get<_i5.Dio>(),
-        url: get<String>(),
-      ));
+  gh.factory<_i6.ApiClient>(() => registerModule.getService(get<_i5.Dio>()));
+  gh.factory<_i7.CountriesCubit>(
+      () => _i7.CountriesCubit(get<_i3.CountryRepository>()));
   gh.lazySingleton<_i3.CountryRepository>(
-    () => _i7.CountryRepositoryImpl(get<_i6.ApiClient>()),
+    () => _i8.CountryRepositoryImpl(get<_i6.ApiClient>()),
     registerFor: {_prod},
   );
   return get;
 }
 
-class _$DioInjectableModule extends _i8.DioInjectableModule {}
+class _$DioInjectableModule extends _i9.DioInjectableModule {}
 
-class _$RetrofitInjectableModule extends _i6.RetrofitInjectableModule {}
+class _$RegisterModule extends _i6.RegisterModule {}

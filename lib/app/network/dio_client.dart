@@ -11,7 +11,7 @@ abstract class DioInjectableModule {
     ..interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          const API_KEY = 'TODO_YOUR_API_KEY';
+          const API_KEY = 'sA,{tzUD=]dHvYNBJ4xVZ3c=&zS%.UqVc{But?kc';
           options.headers.addAll(
             {"x-api-key": API_KEY, "User-Agent": 'best_practice_template'},
           );

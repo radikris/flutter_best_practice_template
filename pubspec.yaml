@@ -15,6 +15,7 @@ dependencies:
   flutter_bloc: ^8.1.1
   flutter_localizations:
     sdk: flutter
+  flutter_screenutil: ^5.5.4
   freezed: ^2.1.0+1
   get_it: ^7.2.0
   injectable: ^1.5.3

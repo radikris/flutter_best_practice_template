@@ -5,29 +5,47 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+import 'package:best_practice_template/app/features/countries/cubit/countries_cubit.dart';
+import 'package:best_practice_template/app/features/countries/view/countries_page.dart';
+import 'package:best_practice_template/app/injectable.dart';
 import 'package:best_practice_template/counter/counter.dart';
 import 'package:best_practice_template/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-        colorScheme: ColorScheme.fromSwatch(
-          accentColor: const Color(0xFF13B9FF),
-        ),
-      ),
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
-    );
+    return ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp(
+              theme: ThemeData(
+                appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
+                colorScheme: ColorScheme.fromSwatch(
+                  accentColor: const Color(0xFF13B9FF),
+                ),
+              ),
+              localizationsDelegates: const [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+              ],
+              supportedLocales: AppLocalizations.supportedLocales,
+              home: MultiBlocProvider(
+                providers: [
+                  BlocProvider<CountriesCubit>(
+                    create: (BuildContext context) =>
+                        getIt<CountriesCubit>()..loadCountries(),
+                  ),
+                ],
+                child: CountriesPage(),
+              ));
+        });
   }
 }
