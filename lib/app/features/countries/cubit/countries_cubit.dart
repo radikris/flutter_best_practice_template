@@ -30,11 +30,31 @@ class CountriesCubit extends Cubit<CountriesState> {
     });
   }
 
-  void loadCountryStates({required int countryId}) {}
+  Future<void> loadCountryStates({required int countryId}) async {
+    CountriesStateData? currentStateData = state.dataOrNull;
 
-  void selectCountry(Country country) {
+    emit(CountriesState.loading());
+    final result =
+        await countryRepository.getCountryStates(countryId: countryId);
+    result.when(success: (success) {
+      print(success);
+      emit(CountriesState.success(
+          currentStateData!.copyWith(countryStates: success)));
+    }, error: (error) {
+      emit(CountriesState.error(error.errorMessage));
+    });
+  }
+
+  Future<void> selectCountry(Country country) async {
+    await loadCountryStates(countryId: country.id);
+    CountriesStateData? currentStateData = state.dataOrNull;
+    emit(CountriesState.success(currentStateData!
+        .copyWith(selectedCountry: country, selectedCountryState: null)));
+  }
+
+  void selectCountryState(CountryState countryState) {
     CountriesStateData? currentStateData = state.dataOrNull;
     emit(CountriesState.success(
-        currentStateData!.copyWith(selectedCountry: country)));
+        currentStateData!.copyWith(selectedCountryState: countryState)));
   }
 }
