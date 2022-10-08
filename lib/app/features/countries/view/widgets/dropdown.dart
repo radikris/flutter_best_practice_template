@@ -26,6 +26,7 @@ class DropDownList<T> extends StatelessWidget {
         Text(
           title,
           style: TextStyles.bold18,
+          textAlign: TextAlign.center,
         ),
         SizedBox(
           height: AppDimen.h8,
