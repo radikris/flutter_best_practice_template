@@ -20,7 +20,7 @@ class CountryRepositoryImpl implements CountryRepository {
 
       return ApiResult.success(result);
     } catch (error) {
-      return ApiResult.error(ApiError.getDioException(error));
+      return ApiResult.error(ApiError.fromDioException(error));
     }
   }
 
@@ -33,7 +33,7 @@ class CountryRepositoryImpl implements CountryRepository {
 
       return ApiResult.success(result);
     } catch (error) {
-      return ApiResult.error(ApiError.getDioException(error));
+      return ApiResult.error(ApiError.fromDioException(error));
     }
   }
 }

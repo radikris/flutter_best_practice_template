@@ -4,3 +4,8 @@ linter:
     public_member_api_docs: false
     sort_pub_dependencies: false
     directives_ordering: false
+    non_constant_identifier_names: false
+    cascade_invocations: false
+    comment_references: false
+    depend_on_referenced_packages: false
+    lines_longer_than_80_chars: false

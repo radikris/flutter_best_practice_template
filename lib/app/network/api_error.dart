@@ -41,7 +41,7 @@ abstract class ApiError with _$ApiError {
 
   const factory ApiError.unexpectedError() = UnexpectedError;
 
-  static ApiError getDioException(error) {
+  factory ApiError.fromDioException(Object error) {
     if (error is Exception) {
       try {
         ApiError apiError;

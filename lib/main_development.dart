@@ -13,8 +13,5 @@ import 'package:injectable/injectable.dart';
 
 void main() async {
   await configureDependencies(Environment.prod);
-  final client =
-      ApiClient(getIt(param1: 'https://api.stagingcupid.com/api/v1'));
-
   await bootstrap(() => const App());
 }
