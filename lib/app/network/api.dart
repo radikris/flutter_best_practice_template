@@ -20,6 +20,8 @@ abstract class ApiClient {
 }
 
 @module
-abstract class RetrofitInjectableModule {
-  ApiClient getService(Dio dio, {String? url}) => ApiClient(dio, baseUrl: url);
+abstract class RegisterModule {
+/*   ApiClient getService(Dio dio, @factoryParam String url) =>
+      ApiClient(dio, baseUrl: url); */
+  ApiClient getService(Dio dio) => ApiClient(dio);
 }
