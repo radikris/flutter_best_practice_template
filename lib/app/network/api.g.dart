@@ -38,15 +38,15 @@ class _ApiClient implements ApiClient {
               queryParameters: queryParameters,
               data: _data,
             )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl),),);
+    final value = _result.data!
         .map((dynamic i) => Country.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<List<CountryState>> getCountryStates(id) async {
+  Future<List<CountryState>> getCountryStates(int id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -63,8 +63,8 @@ class _ApiClient implements ApiClient {
               queryParameters: queryParameters,
               data: _data,
             )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl),),);
+    final value = _result.data!
         .map((dynamic i) => CountryState.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;

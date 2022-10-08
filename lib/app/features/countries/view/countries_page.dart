@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CountriesPage extends StatelessWidget {
-  const CountriesPage({Key? key}) : super(key: key);
+  const CountriesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,27 +24,27 @@ class CountriesPage extends StatelessWidget {
           children: <Widget>[
             ConstrainedBox(
                 constraints: const BoxConstraints.expand(),
-                child: FlutterLogo()),
+                child: const FlutterLogo(),),
             Center(
               child: ClipRect(
                 child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                   child: Container(
                       width: double.infinity,
                       height: double.infinity,
                       padding: AppDimen.edge16,
                       decoration: BoxDecoration(
-                          color: Colors.grey.shade200.withOpacity(0.5)),
-                      child: SizedBox()),
+                          color: Colors.grey.shade200.withOpacity(0.5),),
+                      child: const SizedBox(),),
                 ),
               ),
             ),
             Column(
               children: [
                 state.when(initial: () {
-                  return Text('initial');
+                  return const Text('initial');
                 }, loading: () {
-                  return AppLoading();
+                  return const AppLoading();
                 }, error: (error) {
                   return Text(error);
                 }, success: (success) {
@@ -59,9 +59,7 @@ class CountriesPage extends StatelessWidget {
                           initialValue: stateData.selectedCountry,
                           options: success.countries,
                           formatValue: (value) => value.value,
-                          onSelect: (value) {
-                            cubit.selectCountry(value);
-                          },
+                          onSelect: cubit.selectCountry,
                         ),
                         SizedBox(
                           height: AppDimen.h16,
@@ -75,9 +73,7 @@ class CountriesPage extends StatelessWidget {
                                       state.dataOrNull!.selectedCountryState,
                                   options: success.countryStates,
                                   formatValue: (value) => value.value,
-                                  onSelect: (value) {
-                                    cubit.selectCountryState(value);
-                                  },
+                                  onSelect: cubit.selectCountryState,
                                 )
                               : Center(
                                   child: Text(
@@ -91,12 +87,12 @@ class CountriesPage extends StatelessWidget {
                             height: AppDimen.h32,
                           ),
                           Text(
-                              'You selected: ${stateData.selectedCountry!.value} - ${stateData.selectedCountryState!.value}')
+                              'You selected: ${stateData.selectedCountry!.value} - ${stateData.selectedCountryState!.value}',)
                         ]
                       ],
                     ),
                   );
-                }),
+                },),
               ],
             )
           ],

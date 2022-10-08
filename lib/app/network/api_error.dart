@@ -71,7 +71,7 @@ abstract class ApiError with _$ApiError {
                   apiError = const ApiError.unauthorisedRequest();
                   break;
                 case 404:
-                  apiError = const ApiError.notFound("Not found");
+                  apiError = const ApiError.notFound('Not found');
                   break;
                 case 409:
                   apiError = const ApiError.conflict();
@@ -88,7 +88,7 @@ abstract class ApiError with _$ApiError {
                 default:
                   final responseCode = error.response?.statusCode;
                   apiError = ApiError.defaultError(
-                    "Received invalid status code: $responseCode",
+                    'Received invalid status code: $responseCode',
                   );
               }
               break;
@@ -108,7 +108,7 @@ abstract class ApiError with _$ApiError {
         return const ApiError.unexpectedError();
       }
     } else {
-      if (error.toString().contains("is not a subtype of")) {
+      if (error.toString().contains('is not a subtype of')) {
         return const ApiError.unableToProcess();
       } else {
         return const ApiError.unexpectedError();

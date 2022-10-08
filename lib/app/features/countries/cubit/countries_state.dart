@@ -10,5 +10,5 @@ abstract class CountriesState with _$CountriesState {
   const CountriesState._();
 
   CountriesStateData? get dataOrNull =>
-      this.maybeWhen(success: (data) => data, orElse: () => null);
+      maybeWhen(success: (data) => data, orElse: () => null);
 }
