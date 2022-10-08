@@ -1,3 +1,4 @@
+import 'package:best_practice_template/app/config.dart';
 import 'package:best_practice_template/app/features/countries/domain/models/country/country.dart';
 import 'package:best_practice_template/app/features/countries/domain/models/country_state/country_state.dart';
 import 'package:injectable/injectable.dart';
@@ -21,5 +22,6 @@ abstract class ApiClient {
 abstract class RegisterModule {
 /*   ApiClient getService(Dio dio, @factoryParam String url) =>
       ApiClient(dio, baseUrl: url); */
-  ApiClient getService(Dio dio) => ApiClient(dio);
+  ApiClient getService(Dio dio, Config config) =>
+      ApiClient(dio, baseUrl: config.baseUrl);
 }

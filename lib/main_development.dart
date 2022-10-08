@@ -7,11 +7,10 @@
 
 import 'package:best_practice_template/app/app.dart';
 import 'package:best_practice_template/app/injectable.dart';
-import 'package:best_practice_template/app/network/api.dart';
 import 'package:best_practice_template/bootstrap.dart';
 import 'package:injectable/injectable.dart';
 
 void main() async {
-  await configureDependencies(Environment.prod);
+  await configureDependencies(Environment.dev);
   await bootstrap(() => const App());
 }

@@ -26,19 +26,22 @@ class _ApiClient implements ApiClient {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<Country>>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
+    final _result = await _dio.fetch<List<dynamic>>(
+      _setStreamType<List<Country>>(
+        Options(
+          method: 'GET',
+          headers: _headers,
+          extra: _extra,
+        )
             .compose(
               _dio.options,
               '/countries',
               queryParameters: queryParameters,
               data: _data,
             )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl),),);
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl),
+      ),
+    );
     final value = _result.data!
         .map((dynamic i) => Country.fromJson(i as Map<String, dynamic>))
         .toList();
@@ -46,7 +49,7 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<List<CountryState>> getCountryStates(int id) async {
+  Future<List<CountryState>> getCountryStates(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -63,8 +66,8 @@ class _ApiClient implements ApiClient {
               queryParameters: queryParameters,
               data: _data,
             )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl),),);
-    final value = _result.data!
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
         .map((dynamic i) => CountryState.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
