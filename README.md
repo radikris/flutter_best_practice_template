@@ -20,6 +20,9 @@ This project contains 3 flavors:
 
 To run the desired flavor either use the launch configuration in VSCode/Android Studio or use the following commands:
 
+Before running:
+Add apiKey in *config.dart* file for the desired environment
+
 ```sh
 # Development
 $ flutter run --flavor development --target lib/main_development.dart
