@@ -9,21 +9,21 @@ import 'package:injectable/injectable.dart';
 class CountryRepositoryMock implements CountryRepository {
   @override
   Future<ApiResult<List<Country>>> getCountries() {
-    return Future.value(ApiResult.success([
+    return Future.value(const ApiResult.success([
       Country(id: 1, value: 'country1'),
       Country(id: 2, value: 'country2'),
       Country(id: 3, value: 'country3'),
-    ]));
+    ]),);
   }
 
   @override
   Future<ApiResult<List<CountryState>>> getCountryStates(
-      {required int countryId}) {
-    return Future.value(ApiResult.success([
+      {required int countryId,}) {
+    return Future.value(const ApiResult.success([
       CountryState(id: 1, value: 'countrystate1'),
       CountryState(id: 2, value: 'countrystate2'),
       CountryState(id: 3, value: 'countrystate3'),
       CountryState(id: 4, value: 'countrystate4'),
-    ]));
+    ]),);
   }
 }

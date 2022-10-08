@@ -4,7 +4,6 @@ import 'package:best_practice_template/app/features/countries/domain/repository/
 import 'package:best_practice_template/app/network/api.dart';
 import 'package:best_practice_template/app/network/api_error.dart';
 import 'package:best_practice_template/app/network/api_result.dart';
-import 'package:best_practice_template/extensions/extensions.dart';
 import 'package:injectable/injectable.dart';
 
 @Environment(Environment.prod)
@@ -21,7 +20,7 @@ class CountryRepositoryImpl implements CountryRepository {
 
       return ApiResult.success(result);
     } catch (error) {
-      return ApiResult.error(ApiError.getDioException(error));
+      return ApiResult.error(ApiError.fromDioException(error));
     }
   }
 
@@ -34,7 +33,7 @@ class CountryRepositoryImpl implements CountryRepository {
 
       return ApiResult.success(result);
     } catch (error) {
-      return ApiResult.error(ApiError.getDioException(error));
+      return ApiResult.error(ApiError.fromDioException(error));
     }
   }
 }

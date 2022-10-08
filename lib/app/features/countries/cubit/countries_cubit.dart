@@ -5,7 +5,6 @@ import 'package:best_practice_template/app/features/countries/domain/repository/
 import 'package:best_practice_template/extensions/extensions.dart';
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'countries_state.dart';
@@ -13,48 +12,70 @@ part 'countries_cubit.freezed.dart';
 
 @injectable
 class CountriesCubit extends Cubit<CountriesState> {
+  CountriesCubit(this.countryRepository)
+      : super(const CountriesState.initial());
   final CountryRepository countryRepository;
 
-  CountriesCubit(this.countryRepository) : super(CountriesState.initial());
-
-  void loadCountries() async {
-    CountriesStateData? currentStateData = state.dataOrNull;
-    emit(CountriesState.loading());
+  Future<void> loadCountries() async {
+    var currentStateData = state.dataOrNull;
+    emit(const CountriesState.loading());
     final result = await countryRepository.getCountries();
-    result.when(success: (success) {
-      currentStateData ??= CountriesStateData(countries: [], countryStates: []);
-      emit(CountriesState.success(
-          currentStateData!.copyWith(countries: success)));
-    }, error: (error) {
-      emit(CountriesState.error(error.errorMessage));
-    });
+    result.when(
+      success: (success) {
+        currentStateData ??= const CountriesStateData(
+          countries: [],
+          countryStates: [],
+        );
+        emit(
+          CountriesState.success(
+            currentStateData!.copyWith(countries: success),
+          ),
+        );
+      },
+      error: (error) {
+        emit(CountriesState.error(error.errorMessage));
+      },
+    );
   }
 
   Future<void> loadCountryStates({required int countryId}) async {
-    CountriesStateData? currentStateData = state.dataOrNull;
+    final currentStateData = state.dataOrNull;
 
-    emit(CountriesState.loading());
+    emit(const CountriesState.loading());
     final result =
         await countryRepository.getCountryStates(countryId: countryId);
-    result.when(success: (success) {
-      print(success);
-      emit(CountriesState.success(
-          currentStateData!.copyWith(countryStates: success)));
-    }, error: (error) {
-      emit(CountriesState.error(error.errorMessage));
-    });
+    result.when(
+      success: (success) {
+        emit(
+          CountriesState.success(
+            currentStateData!.copyWith(countryStates: success),
+          ),
+        );
+      },
+      error: (error) {
+        emit(CountriesState.error(error.errorMessage));
+      },
+    );
   }
 
   Future<void> selectCountry(Country country) async {
     await loadCountryStates(countryId: country.id);
-    CountriesStateData? currentStateData = state.dataOrNull;
-    emit(CountriesState.success(currentStateData!
-        .copyWith(selectedCountry: country, selectedCountryState: null)));
+    final currentStateData = state.dataOrNull;
+    //can't be null, because this method only avaiable after successfull fetch
+    emit(
+      CountriesState.success(
+        currentStateData!
+            .copyWith(selectedCountry: country, selectedCountryState: null),
+      ),
+    );
   }
 
   void selectCountryState(CountryState countryState) {
-    CountriesStateData? currentStateData = state.dataOrNull;
-    emit(CountriesState.success(
-        currentStateData!.copyWith(selectedCountryState: countryState)));
+    final currentStateData = state.dataOrNull;
+    emit(
+      CountriesState.success(
+        currentStateData!.copyWith(selectedCountryState: countryState),
+      ),
+    );
   }
 }

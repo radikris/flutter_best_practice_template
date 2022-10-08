@@ -65,7 +65,7 @@ class AppDimen {
   static final commonShadow = BoxShadow(
       blurRadius: AppDimen.r8,
       spreadRadius: AppDimen.r2,
-      offset: const Offset(4, 4));
+      offset: const Offset(4, 4),);
 
   static final edge8 =
       EdgeInsets.symmetric(horizontal: AppDimen.w8, vertical: AppDimen.h8);

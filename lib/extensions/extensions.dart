@@ -35,5 +35,5 @@ extension ApiErrorX on ApiError {
         return 'error_unexpected';
       }, notAcceptable: () {
         return 'error_not_acceptable';
-      });
+      },);
 }

@@ -1,17 +1,16 @@
-import 'package:best_practice_template/app/features/countries/domain/models/country/country.dart';
 import 'package:best_practice_template/theme/app_dimen.dart';
 import 'package:best_practice_template/theme/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class DropDownList<T> extends StatelessWidget {
   const DropDownList({
-    Key? key,
+    super.key,
     required this.options,
     required this.formatValue,
     required this.onSelect,
     required this.initialValue,
     required this.title,
-  }) : super(key: key);
+  });
 
   final T? initialValue;
   final List<T> options;
@@ -34,7 +33,7 @@ class DropDownList<T> extends StatelessWidget {
         DecoratedBox(
           decoration: ShapeDecoration(
             shape: RoundedRectangleBorder(
-              side: BorderSide(width: 1.0, style: BorderStyle.solid),
+              side: const BorderSide(),
               borderRadius: BorderRadius.circular(AppDimen.r12),
             ),
           ),

@@ -7,15 +7,10 @@
 
 import 'package:best_practice_template/app/app.dart';
 import 'package:best_practice_template/app/injectable.dart';
-import 'package:best_practice_template/app/network/api.dart';
 import 'package:best_practice_template/bootstrap.dart';
-import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
 void main() async {
-  await configureDependencies(Environment.prod);
-  final client =
-      ApiClient(getIt(param1: 'https://api.stagingcupid.com/api/v1'));
-
+  await configureDependencies(Environment.dev);
   await bootstrap(() => const App());
 }

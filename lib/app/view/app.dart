@@ -8,7 +8,6 @@
 import 'package:best_practice_template/app/features/countries/cubit/countries_cubit.dart';
 import 'package:best_practice_template/app/features/countries/view/countries_page.dart';
 import 'package:best_practice_template/app/injectable.dart';
-import 'package:best_practice_template/counter/counter.dart';
 import 'package:best_practice_template/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +20,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(360, 690),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
@@ -44,8 +42,8 @@ class App extends StatelessWidget {
                         getIt<CountriesCubit>()..loadCountries(),
                   ),
                 ],
-                child: CountriesPage(),
-              ));
-        });
+                child: const CountriesPage(),
+              ),);
+        },);
   }
 }
