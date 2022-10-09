@@ -18,23 +18,21 @@ This project contains 3 flavors:
 - staging
 - production
 
-To run the desired flavor either use the launch configuration in VSCode/Android Studio or use the following commands:
+To run the desired flavor either use the launch configuration in VSCode/Android Studio or use the *flutter run --flavor --t <dir>* command running the selected flavor.
 
 Before running:
 Add apiKey in *config.dart* file for the desired environment
 
-```sh
-# Development
-$ flutter run --flavor development --target lib/main_development.dart
-
-# Staging
-$ flutter run --flavor staging --target lib/main_staging.dart
-
-# Production
-$ flutter run --flavor production --target lib/main_production.dart
-```
-
-_\*Best Practice Template works on iOS, Android, Web, and Windows._
-
 ---
+
+## Architecture:
+Dependency injection: get_it with injectable
+
+Business logic layer: Cubit with Freezed for State generation (flutter_bloc)
+
+Data layer: Abstract repository with two implementation: Mock and Impl, each will be injected for the proper flavor (according to environment)
+
+Models: Freezed with JsonSerializable for de/serialization
+
+API: Retrofit with Dio
 
